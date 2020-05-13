@@ -9,6 +9,7 @@ let dotButton = document.querySelector('#dot');
 let equalsButton = document.querySelector('#equal');
 let addButton = document.querySelector('#addition');
 let subtractButton = document.querySelector('#subtraction');
+let percentButton = document.querySelector('#percent');
 
 let operation = [];
 let firstNum;
@@ -82,7 +83,6 @@ function operate(command) {
         firstOperation = false;
     }
     
-    
     display.value = currTotal;
     firstNum = currTotal;
     operation = [];
@@ -126,6 +126,21 @@ deleteButton.addEventListener('click', () => {
     }
     console.log(operation);
 })
+
+percentButton.addEventListener('click', () =>{
+    let pers = +operation.join('') / 100;
+    pers = (pers).toString(10).split("")
+    
+
+    if (firstNum == undefined) {
+        display.value = pers.join("");
+        return;
+    }
+    display.value = display.value.slice(0,-(operation.length));
+    display.value = display.value + pers.join("");
+
+    operation = pers;
+} )
 
 clearButton.addEventListener('click', () => {
     display.value = "";
